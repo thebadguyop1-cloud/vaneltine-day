@@ -132,12 +132,18 @@ noBtn.addEventListener("click", function() {
     }
 
     if(currentSize > 100){
-        yesBtn.style.position = "fixed";
-        yesBtn.style.width = "100vw";
-        yesBtn.style.height = "100vh";
-        yesBtn.style.fontSize = "5rem";
-        yesBtn.innerText = "YES 💍";
-    }
+    yesBtn.style.position = "fixed";
+    yesBtn.style.top = "0";          // Ekran yuqorisidan boshlab
+    yesBtn.style.left = "0";         // Ekran chapidan boshlab
+    yesBtn.style.width = "100vw";
+    yesBtn.style.height = "100vh";
+    yesBtn.style.fontSize = "5rem";
+    yesBtn.style.display = "flex";           // Ichidagi matnni markazlash
+    yesBtn.style.justifyContent = "center";  // Gorizontal markaz
+    yesBtn.style.alignItems = "center";
+    yesBtn.innerText = "YES 💍";
+}
+
 });
 
 yesBtn.addEventListener("click", function(){
