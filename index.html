@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine ❤️</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: white;
+    }
+
+    .buttons {
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 5px;
+    }
+
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: white;
+        color: #ff4d6d;
+    }
+
+    .reason {
+        margin-top: 20px;
+        color: white;
+        font-size: 16px;
+        min-height: 30px;
+    }
+
+    .celebration {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff4d6d, #ff758f);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 2rem;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .hearts {
+        position: absolute;
+        font-size: 24px;
+        animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+<h1>Will you be my Valentine? 💘</h1>
+
+<div class="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙃</button>
+</div>
+
+<div class="reason" id="reasonText"></div>
+
+<script>
+let yesBtn = document.getElementById("yesBtn");
+let noBtn = document.getElementById("noBtn");
+let reasonText = document.getElementById("reasonText");
+
+let noCount = 0;
+
+let reasons = [
+    "Are  ya sure? 😢",
+    "O'y o'lasiz agar? 🤨",
+    "Jo'rayizga yoq deyapsiz aa? 😂",
+    "O'rdak ko'ramanku burningga tepaman 😌",
+    "Mayli, yana bir imkon beraman 😏",
+    "Baribir Yesni bosasiz 😎",
+    "Yes katalashayveradi aytib qo'yay 😁"
+];
+
+noBtn.addEventListener("click", function() {
+    noCount++;
+
+    if(noCount <= reasons.length){
+        reasonText.innerText = reasons[noCount - 1];
+    } else {
+        reasonText.innerText = "Endi ko'rasiz mendan 😈";
+    }
+
+    let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize = (currentSize + 10) + "px";
+    yesBtn.style.padding = (currentSize / 2) + "px " + (currentSize) + "px";
+
+    let noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+    if(noSize > 8){
+        noBtn.style.fontSize = (noSize - 2) + "px";
+    }
+
+    if(currentSize > 100){
+        yesBtn.style.position = "fixed";
+        yesBtn.style.width = "100vw";
+        yesBtn.style.height = "100vh";
+        yesBtn.style.fontSize = "5rem";
+        yesBtn.innerText = "YES 💍";
+    }
+});
+
+yesBtn.addEventListener("click", function(){
+    document.body.innerHTML = `
+        <div class="celebration">
+            <h1>EEHEHEHEEEEYYY 💖💖💖</h1>
+            <p>BO'LAR EKANKU ODAMZOD 😍</p>
+            <p>Gullar, yuraklar va cheksiz baxt SIZGA! 🌹✨</p>
+        </div>
+    `;
+
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.classList.add("hearts");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 30 + 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }, 300);
+});
+</script>
+
+</body>
+</html>
